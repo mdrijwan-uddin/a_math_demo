@@ -15,6 +15,12 @@ class Chip_Collector(Chip):
 
     def getMaxQuantity(self):
         return self.__MAX_QUANTITY
+
+    def getChip (self):
+        return super()
+
+    def getChipValue(self):
+        return super().__str__()
         
     def getQuantity (self):
         return self.__quantity

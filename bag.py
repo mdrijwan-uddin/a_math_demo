@@ -1,5 +1,6 @@
-# from chip import Chip
+from chip import Chip
 import total_ruled_chip as rule
+
 
 class Bag:
 
@@ -12,24 +13,25 @@ class Bag:
             total = total + (self.__chips[i].getQuantity())
         return total
 
-    def popOutChip (self, inputChip):   
+    def popOutChip(self, inputChip):
         for i in range(len(self.__chips)):
-            if self.__chips[i].getCHIP() == inputChip:
+            if self.__chips[i].getChip() == inputChip:
                 self.__chips[i].decreasingQuantity()
-                return "One [" + str(self.__chips[i].getCHIP()) + "] has been draw."
+                return "One [" + self.__chips[i].getChipValue() + "] has been draw."
 
-    def pushInChip (self, inputChip):   
+    def pushInChip(self, inputChip):
         for i in range(len(self.__chips)):
-            if self.__chips[i].getCHIP() == inputChip:
+            if self.__chips[i].getChip() == inputChip:
                 self.__chips[i].increasingQuantity()
-                return "One [" + str(self.__chips[i].getCHIP()) + "] has been put in the bag."
+                return "One [" + self.__chips[i].getChipValue() + "] has been put in the bag."
 
     def __str__(self) -> str:
         string = "Total Chips: " + str(self.getChipsLeft()) + \
             "\n------------------------------------------------------------------------------"
         for i in range(len(self.__chips)):
             string = string + ("\n" if i % 5 == 0 else "\t") + \
-                "[" + str(self.__chips[i].getCHIP()) + "]\t: " + str(self.__chips[i].getQuantity())
+                "[" + str(self.__chips[i].getChipValue()) + "]\t: " + \
+                str(self.__chips[i].getQuantity())
         return string
 
 

@@ -11,6 +11,7 @@ class Chip:
     def __init__(self, value):
         self.__VALUE = value
         self.__SCORE = self.__setScore(self.__VALUE)
+        self.__TYPE = self.__setType(self.__VALUE)
 
     def __setScore(self, value):
         if value in self.__ONE_POINT:
@@ -30,20 +31,38 @@ class Chip:
         else:
             return 0
 
-    def getScore(self):
-        return self.__SCORE
+    def __setType(self, value):
+        if value.isnumeric():
+            if 0 <= int(value) <= 9:
+                return "1-digit"
+            elif 10 <= int(value) <= 20:
+                return "2-digits"
+            else:
+                return None
+        elif value in ["+", "-", "+/-", "x", "%", "x/%", "="]:
+            return "Operator"
+        elif value == "Blank":
+            return "Blank"
+        else:
+            return None
 
     def getValue(self):
         return self.__VALUE
 
+    def getScore(self):
+        return self.__SCORE
+
+    def getType(self):
+        return self.__TYPE
+
     def __eq__(self, o: object) -> bool:
-        if self.getValue() == o.getValue():
-            return True
-        else: 
-            return False
+        return self.getValue() == o.getValue()
 
     def __str__(self) -> str:
-        return str(self.getValue()) + "(" + str(self.getScore()) +  ")"
+        return str(self.getValue())
 
 # a = Chip("4")
+# b = Chip("4")
 # print(a)
+# print(b)
+# print(a == b)
