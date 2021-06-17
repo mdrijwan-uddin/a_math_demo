@@ -43,5 +43,7 @@ class Chip:
             return False
 
     def __str__(self) -> str:
-        return str(self.__VALUE)
+        return str(self.getValue()) + "(" + str(self.getScore()) +  ")"
 
+# a = Chip("4")
+# print(a)
