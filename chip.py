@@ -1,3 +1,6 @@
+# คลาสสำหรับการเก็บเบี้ย
+
+
 class Chip:
 
     __ONE_POINT = ["0", "1", "2", "3", "+/-", "x/%", "="]
@@ -10,10 +13,11 @@ class Chip:
 
     def __init__(self, value):
         self.__VALUE = value
-        self.__SCORE = self.__setScore(self.__VALUE)
-        self.__TYPE = self.__setType(self.__VALUE)
+        self.__SCORE = self.__setScore__(self.__VALUE)
+        self.__TYPE = self.__setType__(self.__VALUE)
 
-    def __setScore(self, value):
+    # ระบุคะแนนของเบี้ยหลังจากที่ได้ค่าของเบี้ยมาทันที
+    def __setScore__(self, value):
         if value in self.__ONE_POINT:
             return 1
         elif value in self.__TWO_POINT:
@@ -31,7 +35,8 @@ class Chip:
         else:
             return 0
 
-    def __setType(self, value):
+    # ค่าที่ได้คือ '1-digit', '2-digits', 'Operator', 'Blank' ไว้ใช้แยกประเภทของเบี้ย (ระบุทันที)
+    def __setType__(self, value):
         if value.isnumeric():
             if 0 <= int(value) <= 9:
                 return "1-digit"
@@ -55,12 +60,16 @@ class Chip:
     def getType(self):
         return self.__TYPE
 
+    # ใช้สำหรับเช็คเบี้ยเท่ากันหรือเปล่า
     def __eq__(self, o: object) -> bool:
         return self.getValue() == o.getValue()
 
+    # .toString()
     def __str__(self) -> str:
         return str(self.getValue())
 
+
+# -----------------test data------------------
 # a = Chip("4")
 # b = Chip("4")
 # print(a)

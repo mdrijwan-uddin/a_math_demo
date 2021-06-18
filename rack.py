@@ -1,5 +1,5 @@
 import total_ruled_chip as rule
-from chip import Chip
+# from chip import Chip
 
 
 class Rack:
@@ -8,15 +8,18 @@ class Rack:
     def __init__(self) -> None:
         self.__chipsInRack = []
 
+    # จำนวนตัวเบี้ยที่เหลืออยู่ภายในแป้น
     def getTotalChip(self):
         return len(self.__chipsInRack)
 
+    # ระบุตัวเบี้ย 1 ตัว ใส่เข้าไปในแป้น
     def pushInChip(self, inputChips=[]):
         if type(inputChips) is list and 0 < len(inputChips) <= self.__MAX_CHIPS:
             for i in range(len(inputChips)):
                 self.__chipsInRack.append(inputChips[i])
             return "In Rack: " + self.__str__()
 
+    # ระบุตัวเบี้ย 1 ตัว เอาออกจากแป้น
     def popOutChip(self, inputChips):
         if type(inputChips) is list and 0 < len(inputChips) <= self.__MAX_CHIPS:
             for i in range(len(inputChips)):
@@ -25,6 +28,7 @@ class Rack:
                     self.__chipsInRack.pop(index)
             return "In Rack: " + self.__str__()
 
+    # สรุปตัวเบี้ยแต่ละตัวที่อยู่บนแป้น .toString()
     def __str__(self) -> str:
         string = ""
         for i in range(self.getTotalChip()):
@@ -32,6 +36,7 @@ class Rack:
         return string
 
 
+# -----------------test data------------------
 # a = Rack()
 # input = [Chip("15"), Chip("+"), Chip("="), Chip("9"),
 #          Chip("2"), Chip("8"), Chip("+/-"), Chip("4")]
