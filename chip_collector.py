@@ -5,8 +5,8 @@ from chip import Chip
 class Chip_Collector(Chip):
     
     def __init__(self, chipValue, quantity) -> None:
-        super().__init__(chipValue)  # สร้างเบี้ยขึ้นมา
-        self.__MAX_QUANTITY = self.__quantity = quantity
+            super().__init__(chipValue)  # สร้างเบี้ยขึ้นมา
+            self.__MAX_QUANTITY = self.__quantity = int(quantity)
 
     # เพิ่มจำนวนเบี้ย
     def increasingQuantity(self):

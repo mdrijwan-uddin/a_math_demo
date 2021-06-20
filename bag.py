@@ -36,8 +36,6 @@ class Bag:
             for i in range(len(self.__chips)):
                 if self.__chips[i].getChip() == inputChip:
                     self.__chips[i].decreasingQuantity()
-                    return "Success"
-        return "Failed"
 
     # ระบุตัวเบี้ย 1 ตัว ใส่เข้าไปในถุง
     def pushInChip(self, inputChip):
@@ -45,8 +43,6 @@ class Bag:
             for i in range(len(self.__chips)):
                 if self.__chips[i].getChip() == inputChip:
                     self.__chips[i].increasingQuantity()
-                    return "Success"
-        return "Failed"
 
     # สรุปตัวเบี้ยแต่ละตัวที่เหลืออยู่ในถุง .toString()
     def __str__(self) -> str:

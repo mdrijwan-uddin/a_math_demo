@@ -12,7 +12,7 @@ class Chip:
     __SEVEN_POINT = ["19"]
 
     def __init__(self, value):
-        self.__VALUE = value
+        self.__VALUE = str(value)
         self.__SCORE = self.__setScore__(self.__VALUE)
         self.__TYPE = self.__setType__(self.__VALUE)
 

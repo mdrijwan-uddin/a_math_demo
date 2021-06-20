@@ -7,23 +7,10 @@ class Rack:
         self.__chipsInRack = []
         self.__MAX_CHIPS = 8 # จำนวนตัวเบี้ยสูงสุดที่อยู่บนแป้นวาง
 
-    # จำนวนตัวเบี้ยที่เหลืออยู่ภายในแป้น
-    def getTotalChip(self):
-        return len(self.__chipsInRack)
-
-    def getMaxChips(self):
-        return self.__MAX_CHIPS
-
-    def getChipNeeded(self):
-        return self.__MAX_CHIPS - self.getTotalChip()
-
     # ระบุตัวเบี้ย 1 ตัว ใส่เข้าไปในแป้น
     def pushInChip(self, inputChip):
         if type(inputChip) is Chip and len(self.__chipsInRack) < self.__MAX_CHIPS:
             self.__chipsInRack.append(inputChip)
-            return "Success"
-        return "Failed"
-
 
     # ระบุตัวเบี้ย 1 ตัว เอาออกจากแป้น
     def popOutChip(self, inputChip):
@@ -31,8 +18,26 @@ class Rack:
             if inputChip in self.__chipsInRack:
                 index = self.__chipsInRack.index(inputChip)
                 self.__chipsInRack.pop(index)
-            return "Success"
-        return "Failed"
+
+    # รับเบี้ยที่เหลืออยู่ภายในแป้น
+    def getChipInRack(self):
+        return self.__chipsInRack
+
+    # รับจำนวนตัวเบี้ยที่เหลืออยู่ภายในแป้น
+    def getTotalChip(self):
+        return len(self.__chipsInRack)
+
+    # รับจำนวนตัวเบี้ยสูงสุดที่สามารถอยู่นแป้นได้
+    def getMaxChips(self):
+        return self.__MAX_CHIPS
+
+    # รับจำนวนตัวเบี้ยที่ต้องการ
+    def getChipNeeded(self):
+        return self.__MAX_CHIPS - self.getTotalChip()
+
+    # debug only
+    def clearRack (self):
+        self.__chipsInRack = []
 
     # สรุปตัวเบี้ยแต่ละตัวที่อยู่บนแป้น .toString()
     def __str__(self) -> str:
