@@ -35,18 +35,20 @@ class Chip:
         else:
             return 0
 
-    # ค่าที่ได้คือ '1-digit', '2-digits', 'Operator', 'Blank' ไว้ใช้แยกประเภทของเบี้ย (ระบุทันที)
+    # ไว้ใช้แยกประเภทของเบี้ย (ระบุทันที)
     def __setType__(self, value):
         if value.isnumeric():
-            if 0 <= int(value) <= 9:
-                return "1-digit"
-            elif 10 <= int(value) <= 20:
-                return "2-digits"
+            if 0 <= int(value) <= 9:        # ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+                return "1_digit"
+            elif 10 <= int(value) <= 20:    # ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
+                return "2_digit"
             else:
                 return None
-        elif value in ["+", "-", "+/-", "x", "%", "x/%", "="]:
+        elif value in ["+", "-", "x", "%", "+/-", "x/%", ]:
             return "Operator"
-        elif value == "Blank":
+        elif value is "=":
+            return "Equal"
+        elif value is "Blank":
             return "Blank"
         else:
             return None

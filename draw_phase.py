@@ -12,6 +12,7 @@ class Draw_Phase():
         self.__1st_rack = Rack()
         self.__2nd_rack = Rack()
 
+    # จั่วเบี้ยจยกว่าจะเต็มแป้น
     def draw(self, rack):
         if type(rack) is Rack:
             for j in range(rack.getChipNeeded()):
@@ -30,6 +31,7 @@ class Draw_Phase():
                             self.__bag.popOutChip(drawedChip) 
                             break
     
+    # สับเปลี่ยนเบี้ย และจั่วเบี้ยใหม่
     def shuffle(self, rack, drawer=[]):
         if type(rack) is Rack and type(drawer) is list:
             for i in range(len(drawer)):
@@ -38,8 +40,7 @@ class Draw_Phase():
             self.draw(rack)
             for j in range(len(drawer)):
                 self.__bag.pushInChip(drawer[j])
-             
-
+         
     def getCurrentBag(self):
         return self.__bag
 
@@ -57,7 +58,6 @@ class Draw_Phase():
 # a = Draw_Phase()
 # a1rack = a.getFirstRack()
 # a2rack = a.getSecondRack()
-
 # a.draw(a1rack)
 # print(a.getCurrentBag())
 # print(a1rack)
@@ -91,27 +91,27 @@ class Draw_Phase():
 # print(c2rack)
 
 # สำหรับ Debug การเปลี่ยนเบี้ย
-d = Draw_Phase()
-d2rack = d.getFirstRack()
-d2rack.pushInChip(Chip("9"))
-d.getCurrentBag().popOutChip(Chip("9"))
-d2rack.pushInChip(Chip("3"))
-d.getCurrentBag().popOutChip(Chip("3"))
-d2rack.pushInChip(Chip("7"))
-d.getCurrentBag().popOutChip(Chip("7"))
-d2rack.pushInChip(Chip("="))
-d.getCurrentBag().popOutChip(Chip("="))
-d2rack.pushInChip(Chip("15"))
-d.getCurrentBag().popOutChip(Chip("15"))
-d2rack.pushInChip(Chip("0"))
-d.getCurrentBag().popOutChip(Chip("0"))
-d2rack.pushInChip(Chip("1"))
-d.getCurrentBag().popOutChip(Chip("1"))
-d2rack.pushInChip(Chip("+/-"))
-d.getCurrentBag().popOutChip(Chip("+/-"))
-print(d.getCurrentBag())
-print(d2rack)
-d.shuffle(d2rack, [Chip("15"), Chip("9"), Chip("7")])
-print(d.getCurrentBag())
-print(d2rack)
+# d = Draw_Phase()
+# d2rack = d.getFirstRack()
+# d2rack.pushInChip(Chip("9"))
+# d.getCurrentBag().popOutChip(Chip("9"))
+# d2rack.pushInChip(Chip("3"))
+# d.getCurrentBag().popOutChip(Chip("3"))
+# d2rack.pushInChip(Chip("7"))
+# d.getCurrentBag().popOutChip(Chip("7"))
+# d2rack.pushInChip(Chip("="))
+# d.getCurrentBag().popOutChip(Chip("="))
+# d2rack.pushInChip(Chip("15"))
+# d.getCurrentBag().popOutChip(Chip("15"))
+# d2rack.pushInChip(Chip("0"))
+# d.getCurrentBag().popOutChip(Chip("0"))
+# d2rack.pushInChip(Chip("1"))
+# d.getCurrentBag().popOutChip(Chip("1"))
+# d2rack.pushInChip(Chip("+/-"))
+# d.getCurrentBag().popOutChip(Chip("+/-"))
+# print(d.getCurrentBag())
+# print(d2rack)
+# d.shuffle(d2rack, [Chip("15"), Chip("9"), Chip("7")])
+# print(d.getCurrentBag())
+# print(d2rack)
 

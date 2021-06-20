@@ -1,21 +1,21 @@
 from chip import Chip
-from chip_collector import Chip_Collector
+from chip_collector import ChipCollector
 
 
 class Bag:
     
     def __init__(self) -> None:
         self.__chips = [ # จำนวนตัวเบี้ยของแต่ละตัว
-            Chip_Collector("0", 5), Chip_Collector("1", 6), Chip_Collector("2", 6),
-            Chip_Collector("3", 5), Chip_Collector("4", 5), Chip_Collector("5", 4),
-            Chip_Collector("6", 4), Chip_Collector("7", 4), Chip_Collector("8", 4),
-            Chip_Collector("9", 4), Chip_Collector("10", 2), Chip_Collector("11", 1),
-            Chip_Collector("12", 2), Chip_Collector("13", 1), Chip_Collector("14", 1),
-            Chip_Collector("15", 1), Chip_Collector("16", 1), Chip_Collector("17", 1),
-            Chip_Collector("18", 1), Chip_Collector("19", 1), Chip_Collector("20", 1),
-            Chip_Collector("+", 4), Chip_Collector("-", 4), Chip_Collector("+/-", 5),
-            Chip_Collector("x", 4), Chip_Collector("%", 4), Chip_Collector("x/%", 4),
-            Chip_Collector("=", 11), Chip_Collector("Blank", 4),
+            ChipCollector("0", 5), ChipCollector("1", 6), ChipCollector("2", 6),
+            ChipCollector("3", 5), ChipCollector("4", 5), ChipCollector("5", 4),
+            ChipCollector("6", 4), ChipCollector("7", 4), ChipCollector("8", 4),
+            ChipCollector("9", 4), ChipCollector("10", 2), ChipCollector("11", 1),
+            ChipCollector("12", 2), ChipCollector("13", 1), ChipCollector("14", 1),
+            ChipCollector("15", 1), ChipCollector("16", 1), ChipCollector("17", 1),
+            ChipCollector("18", 1), ChipCollector("19", 1), ChipCollector("20", 1),
+            ChipCollector("+", 4), ChipCollector("-", 4), ChipCollector("+/-", 5),
+            ChipCollector("x", 4), ChipCollector("%", 4), ChipCollector("x/%", 4),
+            ChipCollector("=", 11), ChipCollector("Blank", 4),
         ]
         self.__MAX_CHIPS = self.getTotalChipsLeft()
 

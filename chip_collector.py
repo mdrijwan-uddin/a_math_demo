@@ -2,7 +2,7 @@
 from chip import Chip
 
 
-class Chip_Collector(Chip):
+class ChipCollector(Chip):
     
     def __init__(self, chipValue, quantity) -> None:
             super().__init__(chipValue)  # สร้างเบี้ยขึ้นมา
