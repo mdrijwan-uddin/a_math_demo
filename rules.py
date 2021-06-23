@@ -53,30 +53,35 @@ class Rules():
                 return True
         return False
 
-    # (กฏ) "เลข 2 หลัก" อยู่ติดกับเลขตัวอื่นหรือไม่ * 
+    # (กฏ) "เลข 2 หลัก" อยู่ติดกับเลขตัวอื่นหรือไม่ 
     def __have2DigitStaked(self):
         _2DigitIndex = []
         number = ["1_digit", "2_digit"]
 
+        # เก็บ index ที่่มี "เลข 2 หลัก"
         for index in range(self.getLength()):
             if self.__chips[index].getType() is "2_digit":
                 _2DigitIndex.append(index)
 
+        # หากมีมากกว่า 1 ตัว จะเข้าเงื่อนไขตรวจสอบนี้
         if len(_2DigitIndex) > 0:
             for i in range(len(_2DigitIndex)):
-                if _2DigitIndex[i] is 0:
+                # อยู่ index แรก เช็คตัวหลังอย่างเดียว
+                if _2DigitIndex[i] is 0: 
                     if self.__chips[1].getType() in number:
                         return True
+                # อยู่่ index สุดท้าย เช็คตัวหน้าอย่างเดียว
                 elif _2DigitIndex[i] is self.getLength() - 1:
                     if self.__chips[_2DigitIndex[i] - 1].getType() in number:
                         return True
+                # อยู่่ index อื่น เช็คตัวหน้าหลัง
                 else:
                     if self.__chips[_2DigitIndex[i] + 1].getType() in number \
                             and self.__chips[_2DigitIndex[i] - 1].getType() in number:
                         return True
         return False
 
-    # (กฏ) "เลข 1 หลัก" อยู่ติดกันเกิน 3 ตัวหรือไม่ * 
+    # (กฏ) "เลข 1 หลัก" อยู่ติดกันเกิน 3 ตัวหรือไม่  
     def __have4OrMoreDigit(self):
         number = self.__separateString("1_digit")
         for k in range(len(number)):
@@ -84,7 +89,7 @@ class Rules():
                 return True
         return False
 
-    # (กฏ) "0" อยู่ด้านหน้าของ "เลข 1 หลัก" ที่ติดกันอยู่หรือไม่ * 
+    # (กฏ) "0" อยู่ด้านหน้าของ "เลข 1 หลัก" ที่ติดกันอยู่หรือไม่ 
     def __have0AtTheFirst(self):
         number = self.__separateString("1_digit")
         for k in range(len(number)):
@@ -92,31 +97,36 @@ class Rules():
                 return True
         return False
 
-    # (กฏ) "เครื่องหมาย" อยู่ในตำแหน่งที่ผิดปกติหรือไม่ * 
+    # (กฏ) "เครื่องหมาย" อยู่ในตำแหน่งที่ผิดปกติหรือไม่ 
     def __isSignInWrongPlace(self, separated):
         Operator = ["+", "-", "x", "%"]
         for i in range(len(separated)):
+            # หากความยาวของ array คือ 1 และเป็น "เครื่องหมาย"
             if len(separated[i]) is 1 and separated[i] in Operator:
                 return True
+            # หากตัวแรกใน array เป็น "เครื่องหมาย" ที่ไม่ใช่ "เครื่องหมายลบ(-)"
             elif separated[i][0] in Operator and separated[i][0] is not "-":
                 return True
+            # หากตัวสุดท้ายใน array เป็น "เครื่องหมาย"
             elif separated[i][len(separated[i]) - 1] in Operator:
                 return True
+            # หากตัวแรกใน array เป็น "เครื่องหมายลบ(-)" แล้วตัวถัดไปเป็น "ศูนย์"
             elif separated[i][0] is "-" and separated[i][1] is "0":
                 return True
         return False
 
-    # (แยก) array ระหว่าง "ตัวเลข" หรือ "เท่ากับ" สำหับในการคำนวณต่อไป *
+    # (แยก) array ระหว่าง "ตัวเลข" หรือ "เท่ากับ" สำหรับในการคำนวณต่อไป *
     def __separateString(self, type):
         string = ""
         number = []
         condition = []
+        # เก็บค่า Boolean ใน array 
         for k in range(self.getLength()):
             if type is "1_digit":
                 condition.append(self.__chips[k].getType() is type)
             elif type is "Equal":
                 condition.append(self.__chips[k].getType() is not type)
-
+        # รวมค่าแล้ว push ใน array ใหม่
         for i in range(self.getLength()):
             if condition[i]:
                 string = string + self.__chips[i].getValue()
@@ -124,32 +134,37 @@ class Rules():
                 if string is not "":
                     number.append(string)
                     string = ""
-
+        # push ขั้นสุดท้าย
         if string is not "":
             number.append(string)
         return number
 
-    # (แยก) array "เท่ากับ" สำหรับในการแยกแต่ละสมการออกจากกัน *
+    # (แยก) array "เท่ากับ" สำหรับในการแยกแต่ละสมการออกจากกัน 
     def __separateEquation(self):
         return self.__separateString("Equal")
 
-    # (แยก) array "เท่ากับ" สำหับในการคำนวณต่อไป และรวม "ตัวเลข 1 หลัก" ที่ติดกันเข้าด้วยกันเป็นเลขเดียว*
+    # (แยก) array "เท่ากับ" สำหรับในการคำนวณต่อไป และรวม "ตัวเลข 1 หลัก" ที่ติดกันเข้าด้วยกันเป็นเลขเดียว
     def __adjustSeparated(self, separated):
         Operator = ["+", "-", "x", "%"]
         temp = []
         string = ""
         for i in range(len(separated)):
             for j in range(len(separated[i])):
+                # หากเป็น "ตัวเลข" ให้รวมกันก่อนใน String 
                 if separated[i][j].isnumeric():
                     string = string + separated[i][j]
+                # หากตัวแรกเป็น "เครื่องหมายลบ" ใส่เข้าไปได้เลย
                 elif j is 0 and separated[i][j] is "-":
                     temp.append(separated[i][j])
+                # หากเป็น "เครื่องหมาย" ใส่ String เข้าไปและใส่ "เครื่องหมาย" เข้าไปด้วย
                 elif separated[i][j] in Operator and string is not "":
                     temp.append(string)
                     temp.append(separated[i][j])
                     string = ""
-            temp.append(string)
-            string = ""
+            # เพิ่มขั้นตอนสุดท้าย
+            if string is not "":
+                temp.append(string)
+                string = ""
             separated[i] = temp
             temp = []
         return separated
@@ -186,6 +201,7 @@ class Rules():
     # (คำนวณ) คำนวณระหว่างตัวเลข 2 ตัว
     def __operation(self, first, second, sign):
         
+        # แปลง String เป็น integer หรือ float
         firstNum = self.__stringtoFloatOrInt(first)
         secondNum = self.__stringtoFloatOrInt(second)
 
@@ -200,9 +216,10 @@ class Rules():
 
         return str(self.__stringtoFloatOrInt(result))
 
-    # (คำนวณ) รวมผลทั้งสมการเดียว
+    # (คำนวณ) รวมผลทั้งสมการเดียว 
     def __decreaseCalculationIndex(self, list, firstSign, secondSign):
         temp = []
+        # ทำการแทนที่ผลลัพท์ที่ได้ลงไปใน index ของ "เครื่องหมาย" แล้วแปลง index ด้านข้างเป็น ""
         for j in range(len(list)):
             if list[j] in [firstSign, secondSign]:
                 if list[j] is firstSign:
@@ -211,6 +228,7 @@ class Rules():
                     list[j] = self.__operation(list[j-1], list[j+1], secondSign)
                 list[j-1] = ""
                 list[j+1] = ""
+        # คัดมาเฉพาะ index ที่ไม่ใช่ "" 
         for j in range(len(list)):
             if list[j] is not "":
                 temp.append(list[j])
@@ -223,34 +241,34 @@ class Rules():
         for i in range(len(result) - 1):
             if result[i] != result[i+1]:
                 return "The Answer is Not Correct"
-
         # หากคำตอบถูกต้อง
         score = 0
         for j in range(self.getLength()):
             score = score + self.__chips[j].getScore()
         return "The Answer is Correct. You got " + str(score) + " score(s)"
 
-    # คำนวณรวม
+    # คำนวณรวม 
     def calculation(self):
 
         calculateList = self.__rulesCheck()
 
         if type(calculateList) is not str:
             for i in range(len(calculateList)):
+                # รวม "เครื่องหมายลบ" กับ "ตัวเลขถัดไป"
                 if calculateList[i][0] is "-":
                     calculateList[i][1] = str(
                         int(calculateList[i][1]) * (-1))
                     calculateList[i].pop(0)
-
+                # ทำการ คูณ หาร ก่อน
                 calculateList[i] = self.__decreaseCalculationIndex(
                     calculateList[i], "x", "%")
-
+                # ทำการ บวก ลบ ทีหลัง
                 calculateList[i] = self.__decreaseCalculationIndex(
                     calculateList[i], "+", "-")
-
+            # ถอด index ซ้อนทั้งหมดออก แล้วเก็บแค่ค่าที่ได้มาเท่านั้น
             for j in range(len(calculateList)):
                 calculateList[j] = self.__stringtoFloatOrInt(calculateList[j][0])
-
+            
             return self.__getScore(calculateList)
         
         return calculateList
