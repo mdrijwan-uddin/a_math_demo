@@ -9,12 +9,12 @@ class ChipCollector(Chip):
             self.__MAX_QUANTITY = self.__quantity = int(quantity)
 
     # เพิ่มจำนวนเบี้ย
-    def increasingQuantity(self):
+    def increaseQuantity(self):
         if (self.__quantity < self.__MAX_QUANTITY):
             self.__quantity = self.__quantity + 1
 
     # ลดจำนวนเบี้ย
-    def decreasingQuantity(self):
+    def decreaseQuantity(self):
         if(self.__quantity > 0):
             self.__quantity = self.__quantity - 1
 

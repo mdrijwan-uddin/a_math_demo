@@ -35,14 +35,14 @@ class Bag:
         if type(inputChip) is Chip and 0 < self.getTotalChipsLeft():
             for i in range(len(self.__chips)):
                 if self.__chips[i].getChip() == inputChip:
-                    self.__chips[i].decreasingQuantity()
+                    self.__chips[i].decreaseQuantity()
 
     # ระบุตัวเบี้ย 1 ตัว ใส่เข้าไปในถุง
     def pushInChip(self, inputChip):
         if type(inputChip) is Chip and self.getTotalChipsLeft() <= self.__MAX_CHIPS:
             for i in range(len(self.__chips)):
                 if self.__chips[i].getChip() == inputChip:
-                    self.__chips[i].increasingQuantity()
+                    self.__chips[i].increaseQuantity()
 
     # สรุปตัวเบี้ยแต่ละตัวที่เหลืออยู่ในถุง .toString()
     def __str__(self) -> str:

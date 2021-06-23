@@ -6,7 +6,7 @@ import random
 # print(random.randint(1, 100))
 
 
-class Draw_Phase():
+class DrawPhase():
     def __init__(self) -> None:
         self.__bag = Bag()
         self.__1st_rack = Rack()
@@ -55,7 +55,7 @@ class Draw_Phase():
 
 
 # # สำหรับ Debug การจั่วเบี้ยตาแรก
-# a = Draw_Phase()
+# a = DrawPhase()
 # a1rack = a.getFirstRack()
 # a2rack = a.getSecondRack()
 # a.draw(a1rack)
@@ -68,7 +68,7 @@ class Draw_Phase():
 # print()
 
 # สำหรับ Debug การจั่วเบี้ยจนหมดถุง
-# b = Draw_Phase()
+# b = DrawPhase()
 # b1rack = b.getFirstRack()
 # for i in range(13):
 #     b.getFirstRack().clearRack()
@@ -77,7 +77,7 @@ class Draw_Phase():
 #     print(b1rack)
 
 # สำหรับ Debug การจั่วเบี้ยขณะที่มีเบี้ยอยู่ในแป้น
-# c = Draw_Phase()
+# c = DrawPhase()
 # c2rack = c.getFirstRack()
 # c2rack.pushInChip(Chip("+"))
 # c2rack.pushInChip(Chip("-"))
@@ -91,7 +91,7 @@ class Draw_Phase():
 # print(c2rack)
 
 # สำหรับ Debug การเปลี่ยนเบี้ย
-# d = Draw_Phase()
+# d = DrawPhase()
 # d2rack = d.getFirstRack()
 # d2rack.pushInChip(Chip("9"))
 # d.getCurrentBag().popOutChip(Chip("9"))
