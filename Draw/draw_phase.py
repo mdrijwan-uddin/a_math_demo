@@ -1,6 +1,6 @@
 from bag import Bag
 from rack import Rack
-from chip import Chip
+from Chips.chip import Chip
 import random
 
 # print(random.randint(1, 100))

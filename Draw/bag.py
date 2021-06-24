@@ -1,5 +1,5 @@
-from chip import Chip
-from chip_collector import ChipCollector
+from Chips.chip import Chip
+from Chips.chip_collector import ChipCollector
 
 
 class Bag:

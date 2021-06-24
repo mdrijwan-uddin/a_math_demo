@@ -1,4 +1,4 @@
-from chip import Chip
+from Chips.chip import Chip
 
 
 class Rack:

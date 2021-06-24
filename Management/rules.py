@@ -1,4 +1,4 @@
-from chip import Chip
+from Chips.chip import Chip
 from chip_managing import ChipManaging
 
 class Rules(ChipManaging):
