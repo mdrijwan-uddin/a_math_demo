@@ -72,3 +72,10 @@ class ChipManaging:
             separated[i] = temp
             temp = []
         return separated
+
+    # .toString()
+    def __str__(self) -> str:
+        string = ""
+        for i in range(self.getLength()):
+            string = string + "[" + str(self.getChips()[i]) + "]"
+        return string
