@@ -129,12 +129,7 @@ class Rules(ChipManaging):
         else:
             return super().adjustSeparated(super().separateEquation())
 
-    # .toString()
-    def __str__(self) -> str:
-        string = ""
-        for i in range(super().getLength()):
-            string = string + "[" + str(super().getChips()[i]) + "]"
-        return string
+    
 
 
 
